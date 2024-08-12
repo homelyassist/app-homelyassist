@@ -11,11 +11,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.homelyassist.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -95,7 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
         navView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.navigation_register_login) {
-                loadWebPage();
+                loadWebPage("http://192.168.1.65:8080/app/assist");
+                return true;
+            } else if (item.getItemId() == R.id.navigation_help) {
+                loadWebPage("http://192.168.1.65:8080/app/help");
                 return true;
             }
             return false;
@@ -108,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
 //        NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    private void loadWebPage() {
-        webView.loadUrl("http://192.168.1.65:8080/app/assist");
+    private void loadWebPage(String url) {
+        webView.loadUrl(url);
     }
 
     @Override

@@ -12,7 +12,7 @@
         android:title="@string/title_register_login" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_help"
         android:icon="@drawable/baseline_help_24"
         android:title="@string/title_help" />
 </menu>
