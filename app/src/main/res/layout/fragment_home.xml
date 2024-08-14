@@ -40,6 +40,7 @@
         android:text="@string/agriculture"
         android:textSize="18sp"
         android:textColor="@android:color/black"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

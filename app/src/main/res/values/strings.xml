@@ -4,6 +4,6 @@
     <string name="title_register_login">Assist Register/Login</string>
     <string name="title_help">Help</string>
     <string name="agriculture">Agriculture (କୃଷି ସହାୟକ)</string>
-    <string name="who_are_you_looking_for">Who are you looking for? (କାହାକୁ ଦରକାର କରୁଛନ୍ତି?)</string>
+    <string name="who_are_you_looking_for">Who are you looking for?\n (କାହାକୁ ଦରକାର କରୁଛନ୍ତି?)</string>
     <string name="agriculture_assist">Agriculture Assist</string>
 </resources>
