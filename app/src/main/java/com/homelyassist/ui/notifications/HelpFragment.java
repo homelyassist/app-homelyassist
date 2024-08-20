@@ -13,28 +13,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.homelyassist.R;
+import com.homelyassist.ui.utils.URLUtils;
 
-public class NotificationsFragment extends Fragment {
-
-    private WebView webView;
+public class HelpFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_notifications, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_help, container, false);
 
-        webView = rootView.findViewById(R.id.webview);
-
-        // Enable JavaScript if needed
+        WebView webView = rootView.findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
-        // Ensure links are opened within the WebView, not in an external browser
         webView.setWebViewClient(new WebViewClient());
-
-        // Load the desired URL
-        webView.loadUrl("http://192.168.1.65:8080/app/help");
-
+        webView.loadUrl(URLUtils.buildUrl("help"));
         return rootView;
     }
 }

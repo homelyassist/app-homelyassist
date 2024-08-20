@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_register_login"
-        android:name="com.homelyassist.ui.dashboard.DashboardFragment"
+        android:name="com.homelyassist.ui.dashboard.RegisterLoginAssistFragment"
         android:label="@string/title_register_login"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_register_login_assist" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.homelyassist.ui.notifications.NotificationsFragment"
+        android:name="com.homelyassist.ui.notifications.HelpFragment"
         android:label="@string/title_help"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_help" />
 </navigation>

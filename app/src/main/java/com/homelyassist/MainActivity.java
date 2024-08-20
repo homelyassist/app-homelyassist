@@ -1,26 +1,16 @@
 package com.homelyassist;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.webkit.JsPromptResult;
-import android.webkit.JsResult;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.homelyassist.databinding.ActivityMainBinding;
-import com.homelyassist.ui.dashboard.DashboardFragment;
+import com.homelyassist.ui.dashboard.RegisterLoginAssistFragment;
 import com.homelyassist.ui.home.HomeFragment;
-import com.homelyassist.ui.notifications.NotificationsFragment;
+import com.homelyassist.ui.notifications.HelpFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
             Fragment selectedFragment = null;
             if (item.getItemId() == R.id.navigation_register_login) {
                 //loadWebPage("http://192.168.1.65:8080/app/assist");
-                selectedFragment = new DashboardFragment();
+                selectedFragment = new RegisterLoginAssistFragment();
                 loadFragment(selectedFragment);
                 return true;
             } else if (item.getItemId() == R.id.navigation_help) {
-                selectedFragment = new NotificationsFragment();
+                selectedFragment = new HelpFragment();
                 loadFragment(selectedFragment);
                 return true;
             }else if(item.getItemId() == R.id.navigation_home) {

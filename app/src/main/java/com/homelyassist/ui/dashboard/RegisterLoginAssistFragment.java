@@ -15,17 +15,14 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.homelyassist.R;
-import com.homelyassist.databinding.FragmentDashboardBinding;
 
-public class DashboardFragment extends Fragment {
+public class RegisterLoginAssistFragment extends Fragment {
 
     private WebView webView;
 
@@ -35,7 +32,7 @@ public class DashboardFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_register_login_assist, container, false);
 
         webView = rootView.findViewById(R.id.webview);
 
@@ -83,7 +80,7 @@ public class DashboardFragment extends Fragment {
 
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-                DashboardFragment.this.filePathCallback = filePathCallback;
+                RegisterLoginAssistFragment.this.filePathCallback = filePathCallback;
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("*/*");
