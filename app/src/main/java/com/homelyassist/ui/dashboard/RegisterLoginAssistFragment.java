@@ -40,6 +40,9 @@ public class RegisterLoginAssistFragment extends Fragment {
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
+        //enable local storage object
+        webSettings.setDomStorageEnabled(true);
+
         // Ensure links are opened within the WebView, not in an external browser
         webView.setWebViewClient(new WebViewClient());
 
