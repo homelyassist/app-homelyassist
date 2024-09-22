@@ -1,5 +1,6 @@
 package com.homelyassist.ui.home;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -16,8 +18,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.homelyassist.R;
+import com.homelyassist.ui.utils.URLUtils;
 
 public class HomeFragment extends Fragment {
 
@@ -25,7 +29,9 @@ public class HomeFragment extends Fragment {
     private ImageView imageView;
     private TextView labelBeforeImage, textHome;
     private ProgressBar progressBar;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,9 +42,20 @@ public class HomeFragment extends Fragment {
         labelBeforeImage = root.findViewById(R.id.labelBeforeImage);
         textHome = root.findViewById(R.id.textHome);
         progressBar = root.findViewById(R.id.progressBar);
+        swipeRefreshLayout = root.findViewById(R.id.swipeRefresh);
 
-        // Set up WebView
-        webView.getSettings().setJavaScriptEnabled(true);
+        WebSettings webSettings = webView.getSettings();
+
+        // Enable JavaScript and other necessary settings
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
+
+        // Improve mobile page rendering
+        webSettings.setUseWideViewPort(true); // Enable wide viewport support
+        webSettings.setLoadWithOverviewMode(true); // Scale content to fit WebView by width
+        webSettings.setSupportZoom(true); // Enable zoom controls
+        webSettings.setBuiltInZoomControls(true); // Enable pinch-to-zoom
+        webSettings.setDisplayZoomControls(false); // Hide the zoom controls in UI
 
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -88,19 +105,38 @@ public class HomeFragment extends Fragment {
                 // Hide the ProgressBar and show the WebView when the page is loaded
                 progressBar.setVisibility(View.GONE);
                 webView.setVisibility(View.VISIBLE);
+                swipeRefreshLayout.setRefreshing(false); // Stop the refreshing animation
             }
         });
 
         // Set click listener on ImageView
+//        imageView.setOnClickListener(v -> {
+//            // Load URL in WebView
+//            webView.loadUrl(URLUtils.buildUrl("assist/agriculture/search"));
+//
+//            // Hide other views and show ProgressBar
+//            labelBeforeImage.setVisibility(View.GONE);
+//            imageView.setVisibility(View.GONE);
+//            textHome.setVisibility(View.GONE);
+//            progressBar.setVisibility(View.VISIBLE);
+//            webView.setVisibility(View.GONE);
+//        });
+
         imageView.setOnClickListener(v -> {
             // Load URL in WebView
-            webView.loadUrl("https://homelyassist.com/assist/agriculture/search");
+            webView.loadUrl(URLUtils.buildUrl("assist/agriculture/search"));
 
             // Hide other views and show ProgressBar
             labelBeforeImage.setVisibility(View.GONE);
             imageView.setVisibility(View.GONE);
             textHome.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
+        });
+
+        // Set up SwipeRefreshLayout to refresh the WebView
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            // Reload the current page
+            webView.reload();
         });
 
         return root;
